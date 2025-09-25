@@ -1,0 +1,20 @@
+{
+  "timestamp": "2025-09-25T13:13:43",
+  "best_params": {
+    "svc__C": 10,
+    "svc__gamma": "scale"
+  },
+  "cv_best_score": 0.9523977575855082,
+  "scoring": "f1_macro",
+  "test_accuracy": 0.9817460317460317,
+  "confusion_matrix": [
+    [
+      1046,
+      4
+    ],
+    [
+      19,
+      191
+    ]
+  ]
+}

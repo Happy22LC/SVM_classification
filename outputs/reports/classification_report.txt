@@ -1,0 +1,23 @@
+Best Params:
+{
+  "svc__C": 10,
+  "svc__gamma": "scale"
+}
+
+Cross-validated best score (f1_macro): 0.9524
+
+Test Accuracy: 0.9817
+
+Classification Report:
+              precision    recall  f1-score   support
+
+      Normal     0.9822    0.9962    0.9891      1050
+          TB     0.9795    0.9095    0.9432       210
+
+    accuracy                         0.9817      1260
+   macro avg     0.9808    0.9529    0.9662      1260
+weighted avg     0.9817    0.9817    0.9815      1260
+
+Confusion Matrix:
+[[1046    4]
+ [  19  191]]
