@@ -1,4 +1,5 @@
 """
+I kept all the dataset on my project folder
  To run the program:
   python tb_hog_svm.py --data_dir "/path/to/TB_Chest_Radiography_Database" --feature hog --output_dir outputs
 Requires:
@@ -67,7 +68,7 @@ def read_and_basic_process(path, img_size=(128, 128), grayscale=True):
 
 
 
-# Feature extraction (HOG recommended, LBP optional) - Step 2
+# Feature extraction (HOG recommended, LBP optional) : Step 2
 
 def extract_hog_feature(img_gray,
                         orientations=9,
@@ -158,7 +159,6 @@ def visualize_hog(img_path, out_png, img_size=(128, 128),
 
 
 # Training & evaluation (Steps 3–5)
-
 
 # split the data, run GridSearchCV to tune SVM, evaluate on test set,
 # and save model, confusion matrix figure, text or JSON reports
@@ -277,8 +277,8 @@ def train_and_evaluate(x, y, output_dir, seed=42, test_size=0.3,
     return best_model, acc, cm, report, grid.best_params_
 
 
-# ===
-# Main (Step 1 orchestration + Step 2 + Step 3–6)
+
+# Main (Step 1 + Step 2 + Step 3–6)
 #
 def main():
     parser = argparse.ArgumentParser(description="TB Chest X-ray SVM (HOG/LBP features)")
@@ -326,7 +326,7 @@ def main():
 
     print(f"Found {len(normal_paths)} Normal and {len(tb_paths)} TB images (total={len(X_paths)}).")
 
-    # Build features:Step 2: Preprocess and Feature Extraction
+    # Build features:Step 2: preprocess and Feature Extraction
 
     IMG_SIZE = (args.img_size, args.img_size)
     if args.feature == "hog":
@@ -341,14 +341,14 @@ def main():
         )
 
     # Train + evaluate
-    # Steps 3–5: Train, Tune, Evaluate and Step 6: Save reports
+    # steps 3–5: Train, Tune, Evaluate and Step 6: Save reports
     os.makedirs(args.output_dir, exist_ok=True)
     best_model, acc, cm, report, best_params = train_and_evaluate(
         X, y, output_dir=args.output_dir, seed=args.seed, test_size=args.test_size,
         kernel=args.kernel, scoring=args.scoring, cv_splits=args.cv
     )
 
-    # Save HOG visualizations for the first few images that helps the "Report & Analysis" part.
+    # save HOG visualizations for  first few images that helps the report
     if args.save_hog_viz and args.feature == "hog":
         figdir = os.path.join(args.output_dir, "figures")
         os.makedirs(figdir, exist_ok=True)
